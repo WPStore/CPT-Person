@@ -1,25 +1,25 @@
 <?php
 /**
- * @author    WPStore.io <code@wpstore.io>
- * @copyright Copyright (c) 2014, WPStore.io
+ * @author    Christian Foellmann <foellmann@foe-services.de>
+ * @copyright Copyright (c) 2014, Christian Foellmann
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GPL-2.0+
  * @package   CPT\Person
  * @version   0.0.2
  */
 /**
 Plugin Name: CPT Person
-Plugin URI:  https://www.wpstore.io/plugin/cpt-person/
+Plugin URI:  https://github.com/cfoellmann/CPT-Person
 Description: Provides a standardized Custom Post Type 'Person' plus metadata registered through ACF, CMB2 or Pods
 Version:     0.0.2
-Author:      WPStore.io
-Author URI:  https://www.wpstore.io
+Author:      Christian Foellmann
+Author URI:  http://christian.foellmann.de
 License:     GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: cpt-person
 Domain Path: /languages
 
     CPT Person
-    Copyright (C) 2014 WPStore.io (https://www.wpstore.io)
+    Copyright (C) 2014 Christian Foellmann (http://christian.foellmann.de)
 
     This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License

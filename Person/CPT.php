@@ -1,7 +1,7 @@
 <?php
 /**
- * @author    WP-Store.io <code@wp-store.io>
- * @copyright Copyright (c) 2014, WP-Store.io
+ * @author    Christian Foellmann <foellmann@foe-services.de>
+ * @copyright Copyright (c) 2014, Christian Foellmann
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GPL-2.0+
  * @package   CPT\Person
  */
