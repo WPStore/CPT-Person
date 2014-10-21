@@ -35,9 +35,9 @@ class Pods {
 			return;
 		}
 
-		if ( ! class_exists( 'Acf' ) ) {
+		if ( ! class_exists( 'Acf' ) ) { // CMB2
 
-			$this->pod_name = 'pods_cpt-person';
+			$this->pod_name = 'cpt-person';
 			$this->setup_pods();
 
 		}

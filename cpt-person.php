@@ -4,13 +4,13 @@
  * @copyright Copyright (c) 2014, WPStore.io
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GPL-2.0+
  * @package   CPT\Person
- * @version   0.0.1
+ * @version   0.0.2
  */
-/*
+/**
 Plugin Name: CPT Person
 Plugin URI:  https://www.wpstore.io/plugin/cpt-person/
-Description: @todo
-Version:     0.0.1
+Description: Provides a standardized Custom Post Type 'Person' plus metadata registered through ACF, CMB2 or Pods
+Version:     0.0.2
 Author:      WPStore.io
 Author URI:  https://www.wpstore.io
 License:     GPLv2 or later
@@ -55,7 +55,7 @@ class Person {
 	 * @since 0.0.1
 	 * @var   string
 	 */
-	public static $version = '0.0.1';
+	public static $version = '0.0.2';
 
 	/**
 	 * Holds a copy of the object for easy reference.

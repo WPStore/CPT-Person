@@ -12,7 +12,7 @@ namespace CPT\Person;
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 /**
- * @todo
+ * Register UI for the Meta Fields via ACF
  *
  * @since 0.0.1
  */

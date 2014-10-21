@@ -12,9 +12,9 @@ namespace CPT\Person;
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 /**
- * @todo
+ * Register UI for the Meta Fields via CMB2
  *
- * @since 0.0.1
+ * @since 0.0.2
  */
 class CMB2 {
 
