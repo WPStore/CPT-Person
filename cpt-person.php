@@ -18,10 +18,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: cpt-person
 Domain Path: /languages
 
-    CPT Person
-    Copyright (C) 2014 Christian Foellmann (http://christian.foellmann.de)
+	CPT Person
+	Copyright (C) 2014 Christian Foellmann (http://christian.foellmann.de)
 
-    This program is free software; you can redistribute it and/or
+	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
 	as published by the Free Software Foundation; either version 2
 	of the License, or (at your option) any later version.
@@ -67,7 +67,7 @@ class Person {
 	protected static $_instance = null;
 
 	/**
-	 * Main ScrollDepth Instance
+	 * Main Instance
 	 *
 	 * Ensures only one instance of the class is loaded or can be loaded.
 	 *
@@ -123,6 +123,10 @@ class Person {
 	}
 
 	public function activation( $network_wide ) {
+
+		if ( post_type_exists( 'person' ) && ! apply_filters( 'cpt_person_force_activation', false ) ) {
+			wp_die( __( "A custom post type with the id 'person' is already registered. Activation is blocked to prevent conflicts. Set `add_filter( 'cpt_person_force_activation', '__return_true' )` to force activation." ), __( 'CPT Conflict' ) );
+		}
 
 		require_once 'Person/CPT.php';
 		require_once 'Person/Pods.php';
