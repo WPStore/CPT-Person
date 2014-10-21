@@ -98,6 +98,7 @@ class Person {
 
 		// Initiate classes for all requests
 		new \CPT\Person\ACF();
+		new \CPT\Person\CMB2();
 		new \CPT\Person\CPT();
 
 		// Initiate classes for wp-admin requests
@@ -113,8 +114,9 @@ class Person {
 
 	} // END __construct()
 
-	function require_files() {
+	protected function require_files() {
 		require_once 'Person/ACF.php';
+		require_once 'Person/CMB2.php';
 		require_once 'Person/CPT.php';
 		require_once 'Person/Editor.php';
 		require_once 'Person/Permalinks.php';

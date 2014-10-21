@@ -27,8 +27,7 @@ class CPT {
 	 */
 	public function __construct() {
 
-		add_action( 'init',           array( $this, 'register_cpt' ) );
-//		add_action( 'plugins_loaded', array( $this, 'register_meta_via_acf' ) );
+		add_action( 'init', array( $this, 'register_cpt' ) );
 
 	} // END __construct()
 
@@ -80,11 +79,40 @@ class CPT {
 		$meta_fields = array(
 //			'given_name'  => array( '_person_given_name', 'text' ),
 //			'family_name' => array( '_person_family_name', 'text' ),
-			'address'     => array( '_person_address', 'text' ), // , '$sanitize_callback', '$auth_callback'
-			'telephone'   => array( '_person_telephone', 'text' ),
-			'social'      => array( '_person_social', 'text' ), // repeater
-			'email'       => array( '_person_email', 'email' ), // repeater
-			'website'     => array( '_person_website', 'text' ),
+			'address'     => array(
+				'title' => __( 'Address', 'cpt-person' ),
+				'type' => array(
+					'acf'  => 'text',
+					'cmb2' => 'text',
+					'pods' => 'text',
+				),
+			),
+			'telephone'     => array(
+				'title' => __( 'Telephone', 'cpt-person' ),
+				'type' => array(
+					'acf'  => 'text',
+					'cmb2' => 'text',
+					'pods' => 'text',
+				),
+			),
+			'email'     => array(
+				'title' => __( 'Email', 'cpt-person' ),
+				'type' => array(
+					'acf'  => 'text',
+					'cmb2' => 'text_email',
+					'pods' => 'text',
+				),
+			),
+			'website'     => array(
+				'title' => __( 'Website', 'cpt-person' ),
+				'type' => array(
+					'acf'  => 'text',
+					'cmb2' => 'text_url',
+					'pods' => 'text',
+				),
+			),
+//			'social'      => array( '_person_social', 'text' ), // repeater
+//			'email'       => array( '_person_email', 'email' ), // repeater
 		);
 
 		return apply_filters( 'cpt_person_meta_fields', $meta_fields );

@@ -27,22 +27,19 @@ class ACF {
 	 */
 	public function __construct() {
 
-		if ( ! class_exists( 'Acf' ) ) {
+		// Bail if other helpers are present
+		if ( ! class_exists( 'Acf' ) || defined( 'PODS_VERSION' ) || class_exists( 'CMB2' ) ) {
 			return;
 		}
 
-		if ( ! defined( 'PODS_VERSION' ) ) {
-
-			add_action( 'admin_init', array( $this, 'register_fields' ) ); // @todo ACF-specific hook
-
-		}
+		add_action( 'admin_init', array( $this, 'add_fields' ) ); // @todo ACF-specific hook?
 
 	} // END __construct()
 
-	public function register_fields() {
+	public function add_fields() {
 
 		$acf = array(
-			'id'	     => 'acf_cpt-person-fields',
+			'id'	     => 'cpt-person-fields',
 			'title'	     => __( 'Personal Details', 'cpt-person' ),
 			'fields'     => $this->fields(),
 			'location'   => array (
@@ -68,10 +65,24 @@ class ACF {
 
 	} // END register_meta_via_acf()
 
-	 private function fields() {
+	private function fields() {
 
-		 $meta_fields = \CPT\Person\CPT::meta_fields();
+		$meta_fields = \CPT\Person\CPT::meta_fields();
+		$fields      = array();
 
-	 }
+		foreach ( $meta_fields as $key => $value ) {
 
-} // END class Pods
+			$fields[] = array(
+				'label' => $value['title'],
+				'name'  => '_person_'.$key,
+				'key'   => '_person_'.$key,
+				'type'  => $value['type']['acf'],
+			);
+
+		} // END foreach
+
+		return $fields;
+
+	 } // END fields()
+
+} // END class ACF
