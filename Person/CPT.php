@@ -119,4 +119,21 @@ class CPT {
 
 	}
 
+	function register_meta() {
+
+		if ( class_exists( 'Acf' ) || defined( 'PODS_VERSION' ) ) {
+			return;
+		}
+
+		$meta_fields = self::meta_fields();
+
+		foreach ( $meta_fields as $id => $value ) {
+
+			// register_meta( $meta_type, $meta_key, $sanitize_callback, $auth_callback);
+			register_meta( 'post', $value[0], 'esc_url_raw', '__return_true' );
+
+		}
+
+	}
+
 } // END class CPT
