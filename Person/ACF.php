@@ -70,6 +70,13 @@ class ACF {
 		$meta_fields = \CPT\Person\CPT::meta_fields();
 		$fields      = array();
 
+		$fields[] = array(
+			'label' => __( 'Main Details', 'cpt-person' ),
+			'name'  => '_person_tab_main',
+			'key'   => '_person_tab_main',
+			'type' => 'tab',
+		);
+
 		foreach ( $meta_fields as $key => $value ) {
 
 			$fields[] = array(
