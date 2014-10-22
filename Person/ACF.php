@@ -28,7 +28,7 @@ class ACF {
 	public function __construct() {
 
 		// Bail if other helpers are present
-		if ( ! class_exists( 'Acf' ) || defined( 'PODS_VERSION' ) || class_exists( 'CMB2' ) ) {
+		if ( ! class_exists( 'Acf' ) || class_exists( 'CMB2' ) ) {
 			return;
 		}
 

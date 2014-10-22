@@ -4,13 +4,13 @@
  * @copyright Copyright (c) 2014, Christian Foellmann
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GPL-2.0+
  * @package   CPT\Person
- * @version   0.0.2
+ * @version   0.0.3
  */
 /**
 Plugin Name: CPT Person
 Plugin URI:  https://github.com/cfoellmann/CPT-Person
-Description: Provides a standardized Custom Post Type 'Person' plus metadata registered through ACF, CMB2 or Pods
-Version:     0.0.2
+Description: Provides a standardized Custom Post Type 'Person' plus metadata registered through ACF or CMB2
+Version:     0.0.3
 Author:      Christian Foellmann
 Author URI:  http://christian.foellmann.de
 License:     GPLv2 or later
@@ -55,7 +55,7 @@ class Person {
 	 * @since 0.0.1
 	 * @var   string
 	 */
-	public static $version = '0.0.2';
+	public static $version = '0.0.3';
 
 	/**
 	 * Holds a copy of the object for easy reference.
@@ -129,7 +129,6 @@ class Person {
 		}
 
 		require_once 'Person/CPT.php';
-		require_once 'Person/Pods.php';
 
 		add_option(
 			'cpt_person_base',
@@ -137,7 +136,6 @@ class Person {
 		);
 
 		\CPT\Person\CPT::register_cpt();
-		new \CPT\Person\Pods();
 
 		flush_rewrite_rules();
 

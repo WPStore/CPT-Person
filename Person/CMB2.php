@@ -28,7 +28,7 @@ class CMB2 {
 	public function __construct() {
 
 		// Bail if other helpers are present
-		if ( defined( 'PODS_VERSION' ) || class_exists( 'Acf' ) ) {
+		if ( class_exists( 'Acf' ) ) {
 			return;
 		}
 
