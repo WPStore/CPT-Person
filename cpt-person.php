@@ -129,6 +129,7 @@ class Person {
 		}
 
 		require_once 'Person/CPT.php';
+		require_once 'Person/Pods.php';
 
 		add_option(
 			'cpt_person_base',
@@ -136,6 +137,7 @@ class Person {
 		);
 
 		\CPT\Person\CPT::register_cpt();
+		new \CPT\Person\Pods();
 
 		flush_rewrite_rules();
 
