@@ -5,6 +5,8 @@ __Provides a standardized Custom Post Type 'Person' plus metadata registered thr
 * __@todo__
 	* Evaluate Pods support
 	* Evaluate meta-keys
+* __0.0.3__
+	* Activation: Check for `person` cpt to prevent conflicts
 * __0.0.2__
 	* ADDED support for [CMB2](https://wordpress.org/plugins/cmb2/)
 	* FIXED support for [ACF](https://wordpress.org/plugins/advanced-custom-fields/)
