@@ -1,15 +1,12 @@
 <?php
 /**
- * @author    Christian Foellmann <foellmann@foe-services.de>
- * @copyright Copyright (c) 2014, Christian Foellmann
+ * @author    WPStore.io <code@wpstore.io>
+ * @copyright Copyright (c) 2014-2015, WPStore.io
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GPL-2.0+
- * @package   CPT\Person
+ * @package   WPStore\CPT\Person
  */
 
-namespace CPT\Person;
-
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+namespace WPStore\CPT\Person;
 
 /**
  * Register UI for the Meta Fields via ACF
@@ -25,23 +22,23 @@ class ACF {
 	 *
 	 * @return void
 	 */
-	public function __construct() {
+	public static function init() {
 
 		// Bail if other helpers are present
 		if ( ! class_exists( 'Acf' ) || class_exists( 'CMB2' ) ) {
 			return;
 		}
 
-		add_action( 'admin_init', array( $this, 'add_fields' ) ); // @todo ACF-specific hook?
+		add_action( 'admin_init', array( __CLASS__, 'add_fields' ) ); // @todo ACF-specific hook?
 
 	} // END __construct()
 
-	public function add_fields() {
+	public static function add_fields() {
 
 		$acf = array(
 			'id'	     => 'cpt-person-fields',
 			'title'	     => __( 'Personal Details', 'cpt-person' ),
-			'fields'     => $this->fields(),
+			'fields'     => self::fields(),
 			'location'   => array (
 				array (
 					array (
@@ -63,11 +60,11 @@ class ACF {
 
 		register_field_group( $acf );
 
-	} // END register_meta_via_acf()
+	} // END add_fields()
 
-	private function fields() {
+	private static function fields() {
 
-		$meta_fields = \CPT\Person\CPT::meta_fields();
+		$meta_fields = \WPStore\CPT\Person\CPT::meta_fields();
 		$fields      = array();
 
 		$fields[] = array(

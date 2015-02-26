@@ -1,6 +1,11 @@
 # CPT Person
 __Provides a standardized Custom Post Type 'Person' plus metadata registered through ACF, CMB2 or Pods__
 
+## Development
+* Clone repo
+* Run `composer install --prefer-dist`
+* DO NOT commit `lib/*` to git for now!
+
 ## Changelog
 * __@todo__
 	* Evaluate Pods support

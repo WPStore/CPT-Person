@@ -1,15 +1,12 @@
 <?php
 /**
- * @author    Christian Foellmann <foellmann@foe-services.de>
- * @copyright Copyright (c) 2014, Christian Foellmann
+ * @author    WPStore.io <code@wpstore.io>
+ * @copyright Copyright (c) 2014-2015, WPStore.io
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GPL-2.0+
- * @package   CPT\Person
+ * @package   WPStore\CPT\Person
  */
 
-namespace CPT\Person;
-
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+namespace WPStore\CPT\Person;
 
 /**
  * Register UI for the Meta Fields via CMB2
@@ -25,18 +22,18 @@ class CMB2 {
 	 *
 	 * @return void
 	 */
-	public function __construct() {
+	public static function init() {
 
 		// Bail if other helpers are present
 		if ( class_exists( 'Acf' ) ) {
 			return;
 		}
 
-		add_filter( 'cmb2_meta_boxes', array( $this, 'add_metabox' ) );
+		add_filter( 'cmb2_meta_boxes', array( __CLASS__, 'add_metabox' ) );
 
-	} // END __construct()
+	} // END init()
 
-	public function add_metabox( $meta_boxes ) {
+	public static function add_metabox( $meta_boxes ) {
 
 		$meta_boxes['cpt-person-fields'] = array(
 			'id'           => 'cpt-person-fields',
@@ -45,16 +42,16 @@ class CMB2 {
 			'context'      => 'normal',
 			'priority'     => 'high',
 			'show_names'   => true, // Show field names on the left
-			'fields'       => $this->fields(),
+			'fields'       => self::fields(),
 		);
 
 		return $meta_boxes;
 
-	}
+	} // END add_metabox()
 
-	private function fields() {
+	private static function fields() {
 
-		$meta_fields = \CPT\Person\CPT::meta_fields();
+		$meta_fields = \WPStore\CPT\Person\CPT::meta_fields();
 		$fields      = array();
 
 		foreach ( $meta_fields as $key => $value ) {

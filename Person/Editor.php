@@ -1,15 +1,12 @@
 <?php
 /**
- * @author    Christian Foellmann <foellmann@foe-services.de>
- * @copyright Copyright (c) 2014, Christian Foellmann
+ * @author    WPStore.io <code@wpstore.io>
+ * @copyright Copyright (c) 2014-2015, WPStore.io
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GPL-2.0+
- * @package   CPT\Person
+ * @package   WPStore\CPT\Person
  */
 
-namespace CPT\Person;
-
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+namespace WPStore\CPT\Person;
 
 /**
  * @todo
@@ -25,12 +22,21 @@ class Editor {
 	 *
 	 * @return void
 	 */
-	public function __construct() {
+	public static function init() {
 
-		add_filter( 'enter_title_here',      array( $this, 'change_title_name' ) );
-		add_action( 'add_meta_boxes_person', array( $this, 'metabox_name' ) );
+		// load meta box hooks on post creation screens
+		foreach ( array( 'post', 'post-new' ) as $hook ) {
+			add_action( "load-$hook.php", array( __CLASS__, 'load' ), 1, 0 );
+		}
 
-	} // END __construct()
+	} // END init()
+
+	public static function load() {
+
+		add_filter( 'enter_title_here',      array( __CLASS__, 'change_title_name' ) );
+		add_action( 'add_meta_boxes_person', array( __CLASS__, 'metabox_name' ) );
+
+	} // END load()
 
 	/**
 	 * Change 'Enter title here' placeholder for Persons to 'Name'
@@ -38,11 +44,11 @@ class Editor {
 	 * @author Captain Theme <info@captaintheme.com>
 	 * @since  0.0.1
 	 */
-	public function change_title_name( $title ) {
+	public static function change_title_name( $title ) {
 
 	    $screen = get_current_screen();
 
-	    if ( 'person' == $screen->post_type ){
+	    if ( 'person' == $screen->post_type ) {
 	        $title = __( 'Name', 'cpt-person' );
 	    }
 
@@ -56,10 +62,22 @@ class Editor {
 	 * @author Captain Theme <info@captaintheme.com>
 	 * @since  0.0.1
 	 */
-	public function metabox_name() {
+	public static function metabox_name() {
 
-		remove_meta_box( 'postimagediv', 'person', 'side' );
-		add_meta_box( 'postimagediv', __( 'Photo', 'cpt-person' ), 'post_thumbnail_meta_box', 'person', 'side', 'low' );
+		remove_meta_box(
+			'postimagediv',
+			'person',
+			'side'
+		);
+
+		add_meta_box(
+			'postimagediv',
+			__( 'Photo', 'cpt-person' ),
+			'post_thumbnail_meta_box',
+			'person',
+			'side',
+			'low'
+		);
 
 	} // END metabox_name()
 

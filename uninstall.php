@@ -1,9 +1,9 @@
 <?php
 /**
- * @author    Christian Foellmann <foellmann@foe-services.de>
- * @copyright Copyright (c) 2014, Christian Foellmann
+ * @author    WPStore.io <code@wpstore.io>
+ * @copyright Copyright (c) 2014-2015, WPStore.io
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GPL-2.0+
- * @package   CPT\Person
+ * @package   WPStore\CPT\Person
  */
 
 if ( ! defined( 'ABSPATH' ) && ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
