@@ -1,6 +1,6 @@
 {
   "name": "wpstore/cpt-person",
-  "description": "@todo",
+  "description": "Provides a standardized Custom Post Type 'Person' plus metadata registered through ACF or CMB2",
   "version": "0.1.0",
   "type": "wordpress-plugin",
   "homepage": "https://www.wp-store.io/plugins/cpt-person/",
