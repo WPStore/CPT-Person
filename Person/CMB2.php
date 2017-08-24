@@ -37,6 +37,7 @@ class CMB2 {
 	 */
 	public static function processor_cmb2() {
 
+		$prefix = '_person_';
 		$fields = \WPStore\Plugins\Person\CPT::meta_fields();
 
 		/**
@@ -44,7 +45,7 @@ class CMB2 {
 		 */
 		$cmb = new_cmb2_box(
 			array(
-				'id'			 => 'personal_details',
+				'id'			 => 'person_personal_details',
 				'title'			 => __( 'Personal Details', 'cpt-person' ),
 				'object_types'	 => array( 'person' ), // Post type
 				'context'		 => 'after_title',
@@ -58,7 +59,7 @@ class CMB2 {
 				array(
 					'name'	 => $values['name'],
 					'desc'	 => $values['desc'],
-					'id'	 => $field_id,
+					'id'	 => $prefix . $field_id,
 					'type'	 => $values['type']['cmb2'],
 				)
 			);
