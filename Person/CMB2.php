@@ -39,56 +39,31 @@ class CMB2 {
 
 		$fields = \WPStore\Plugins\Person\CPT::meta_fields();
 
-		// Start with an underscore to hide fields from custom fields list
-		$prefix = 'person_';
-
 		/**
 		 * Initiate the metabox
 		 */
-		$cmb = new_cmb2_box( array(
-			'id'			 => 'personal_details',
-			'title'			 => __( 'Personal Details', 'cpt-person' ),
-			'object_types'	 => array( 'person' ), // Post type
-			'context'		 => 'after_title',
-			'priority'		 => 'high',
-			'show_names'	 => true, // Show field names on the left
-		// 'cmb_styles' => false, // false to disable the CMB stylesheet
-		// 'closed'     => true, // Keep the metabox closed by default
-		) );
+		$cmb = new_cmb2_box(
+			array(
+				'id'			 => 'personal_details',
+				'title'			 => __( 'Personal Details', 'cpt-person' ),
+				'object_types'	 => array( 'person' ), // Post type
+				'context'		 => 'after_title',
+				'priority'		 => 'high',
+				'show_names'	 => true,
+			)
+		);
 
-		// Regular text field
-		$cmb->add_field( array(
-			'name'		 => __( 'Test Text', 'cpt-person' ),
-			'desc'		 => __( 'field description (optional)', 'cpt-person' ),
-			'id'		 => $prefix . 'text',
-			'type'		 => 'text',
-			'show_on_cb' => 'cmb2_hide_if_no_cats', // function should return a bool value
-		// 'sanitization_cb' => 'my_custom_sanitization', // custom sanitization callback parameter
-		// 'escape_cb'       => 'my_custom_escaping',  // custom escaping callback parameter
-		// 'on_front'        => false, // Optionally designate a field to wp-admin only
-		// 'repeatable'      => true,
-		) );
+		foreach ( $fields as $field_id => $values ) {
+			$cmb->add_field(
+				array(
+					'name'	 => $values['name'],
+					'desc'	 => $values['desc'],
+					'id'	 => $field_id,
+					'type'	 => $values['type']['cmb2'],
+				)
+			);
+		}
 
-		// URL text field
-		$cmb->add_field( array(
-			'name'	 => __( 'Website URL', 'cpt-person' ),
-			'desc'	 => __( 'field description (optional)', 'cpt-person' ),
-			'id'	 => $prefix . 'url',
-			'type'	 => 'text_url',
-		// 'protocols' => array('http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet'), // Array of allowed protocols
-		// 'repeatable' => true,
-		) );
-
-		// Email text field
-		$cmb->add_field( array(
-			'name'	 => __( 'Test Text Email', 'cpt-person' ),
-			'desc'	 => __( 'field description (optional)', 'cpt-person' ),
-			'id'	 => $prefix . 'email',
-			'type'	 => 'text_email',
-		// 'repeatable' => true,
-		) );
-
-		// Add other metaboxes as needed
-	}
+	} // END processor_cmb2()
 
 } // END class

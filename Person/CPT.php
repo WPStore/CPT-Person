@@ -113,28 +113,32 @@ class CPT {
 //			'given_name'  => array( '_person_given_name', 'text' ),
 //			'family_name' => array( '_person_family_name', 'text' ),
 			'address'     => array(
-				'title' => __( 'Address', 'cpt-person' ),
+				'name' => __( 'Address', 'cpt-person' ),
+				'desc' => __( 'The persons address', 'cpt-person' ),
 				'type'  => array(
 					'cmb2' => 'text',
 					'acf'  => 'text',
 				),
 			),
 			'telephone'   => array(
-				'title' => __( 'Telephone', 'cpt-person' ),
+				'name' => __( 'Telephone', 'cpt-person' ),
+				'desc' => __( 'The persons telephone number', 'cpt-person' ),
 				'type'  => array(
 					'cmb2' => 'text',
 					'acf'  => 'text',
 				),
 			),
 			'email'       => array(
-				'title' => __( 'Email', 'cpt-person' ),
+				'name' => __( 'Email', 'cpt-person' ),
+				'desc' => __( 'The persons email address', 'cpt-person' ),
 				'type'  => array(
 					'cmb2' => 'text_email',
 					'acf'  => 'text',
 				),
 			),
 			'website'     => array(
-				'title' => __( 'Website', 'cpt-person' ),
+				'name' => __( 'Website', 'cpt-person' ),
+				'desc' => __( 'The persons website', 'cpt-person' ),
 				'type'  => array(
 					'cmb2' => 'text_url',
 					'acf'  => 'text',
