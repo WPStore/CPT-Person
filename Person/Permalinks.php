@@ -1,24 +1,24 @@
 <?php
 /**
  * @author    WPStore.io <code@wpstore.io>
- * @copyright Copyright (c) 2014-2015, WPStore.io
- * @license   http://www.gnu.org/licenses/gpl-2.0.html GPL-2.0+
- * @package   WPStore\CPT\Person
+ * @copyright Copyright (c) 2014-2017, WPStore.io
+ * @license   https://www.gnu.org/licenses/gpl-2.0.html GPL-2.0+
+ * @package   WPStore\Plugins\Person
  */
 
-namespace WPStore\CPT\Person;
+namespace WPStore\Plugins\Person;
 
 /**
  * @todo
  *
- * @since 0.0.1
+ * @since 0.1.0
  */
 class Permalinks {
 
 	/**
 	 * Constructor. Hooks all interactions to initialize the class.
 	 *
-	 * @since 0.0.1
+	 * @since 0.1.0
 	 *
 	 * @return void
 	 */
@@ -36,7 +36,7 @@ class Permalinks {
 			update_option( 'cpt_person_base', sanitize_title_with_dashes( $_POST['cpt_person_base'] ) );
 		}
 
-		// check if section already exists
+		// @todo check if section already exists
 		add_settings_section(
 			'cpt-rewrites',
 			__( 'Custom Post Type Rewrites', 'cpt-person' ),
@@ -58,7 +58,7 @@ class Permalinks {
 
 		$value = get_option(
 			'cpt_person_base',
-			apply_filters( 'cpt_person_option_base', 'person' )
+			apply_filters( "cpt-person/option-base", 'person' )
 		);
 
 //		wp_nonce_field('update-cpt-permalink');
