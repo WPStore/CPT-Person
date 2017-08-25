@@ -42,17 +42,17 @@ class ACF4 {
 		foreach ( $fields as $field_id => $values ) {
 
 			$field_details[] = array(
-				'key' => 'field_' . $prefix . $field_id,
-				'label' => $values['name'],
-				'name' => $prefix . $field_id,
-				'type' => $values['type']['acf'],
-				'instructions' => $values['desc'],
+				'key'           => 'field_' . $prefix . $field_id,
+				'label'         => $values['name'],
+				'name'          => $prefix . $field_id,
+				'type'          => $values['type']['acf'],
+				'instructions'  => $values['desc'],
 				'default_value' => '',
-				'placeholder' => $values['placeholder'],
-				'prepend' => '',
-				'append' => '',
-				'formatting' => 'html',
-				'maxlength' => '',
+				'placeholder'   => $values['placeholder'],
+				'prepend'       => '',
+				'append'        => '',
+				'formatting'    => 'html',
+				'maxlength'     => '',
 			);
 
 		} // END foreach
@@ -64,17 +64,17 @@ class ACF4 {
 			'location'	 => array(
 				array(
 					array(
-						'param'		 => 'post_type',
-						'operator'	 => '==',
-						'value'		 => 'person',
-						'order_no'	 => 0,
-						'group_no'	 => 0,
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'person',
+						'order_no' => 0,
+						'group_no' => 0,
 					),
 				),
 			),
-			'options'	 => array(
-				'position'		 => 'acf_after_title',
-				'layout'		 => 'default',
+			'options' => array(
+				'position'       => 'acf_after_title',
+				'layout'         => 'default',
 				'hide_on_screen' => array(
 				),
 			),
@@ -82,56 +82,5 @@ class ACF4 {
 		) );
 
 	} // END
-	public static function generate_fields2() {
-
-		
-
-		foreach ( $fields as $field_id => $values ) {
-
-			$field_details[] = array(
-				'key' => 'field_' . $prefix . $field_id,
-				'label' => $values['name'],
-				'name' => $prefix . $field_id,
-				'type' => $values['type']['acf'],
-				'instructions' => $values['desc'],
-				'default_value' => '',
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-				'formatting' => 'html',
-				'maxlength' => '',
-			);
-
-		} // END foreach
-
-		/**
-		 * Initiate the metabox
-		 */
-		register_field_group( array(
-			'id'		 => 'person_personal_details',
-			'title'		 => __( 'Personal Details', 'cpt-person' ),
-			'fields'	 => array(
-				$field_details,
-//				$fields_temp,
-			),
-			'location'	 => array(
-				array(
-					array(
-						'param'		 => 'post_type',
-						'operator'	 => '==',
-						'value'		 => 'person',
-					),
-				),
-			),
-			'options'	 => array(
-				'position' => 'acf_after_title',
-				'layout'   => 'default',
-				'hide_on_screen' => array (
-				),
-			),
-			'menu_order' => 0,
-		) );
-
-	} // END generate_fields()
 
 } // END class ACF4
