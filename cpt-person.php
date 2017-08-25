@@ -133,7 +133,7 @@ final class Person {
 	 */
 	public function init() {
 
-		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+		add_action( 'plugins_loaded', array( '\WPStore\Plugins\Person', 'load_textdomain' ) );
 
 		new Person\CPT();
 

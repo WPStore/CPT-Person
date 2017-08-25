@@ -13,7 +13,7 @@ namespace WPStore\Plugins\Person;
  *
  * @since 0.0.2
  */
-class CMB2 {
+class MetaBox {
 
 	/**
 	 * Constructor. Hooks all interactions to initialize the class.
@@ -35,40 +35,34 @@ class CMB2 {
 	/**
 	 * Define the metabox and field configurations.
 	 */
-	public static function generate_fields() {
+	public static function generate_fields( $meta_boxes ) {
 
 		$prefix = '_person_';
 		$fields = \WPStore\Plugins\Person\CPT::meta_fields();
 
-		/**
-		 * Initiate the metabox
-		 */
-		$cmb = new_cmb2_box(
-			array(
-				'id'			 => 'person_personal_details',
-				'title'			 => __( 'Personal Details', 'cpt-person' ),
-				'object_types'	 => array( 'person' ), // Post type
-				'context'		 => 'after_title',
-				'priority'		 => 'high',
-				'show_names'	 => true,
-			)
-		);
-
 		foreach ( $fields as $field_id => $values ) {
 
-			$cmb->add_field(
-				array(
-					'name'	 => $values['name'],
-					'desc'	 => $values['desc'],
-					'id'	 => $prefix . $field_id,
-					'type'	 => $values['type']['cmb2'],
-					'attributes' => array(
-						'placeholder'	 => $values['placeholder'],
-					),
-				)
+			$field_details[] = array(
+				'name'	 => $values['name'],
+				'desc'	 => $values['desc'],
+				'id'	 => $prefix . $field_id,
+				'type'	 => $values['type']['metabox'],
 			);
 
 		} // END foreach
+
+		$meta_boxes[] = array(
+			'id'		 => 'person_personal_details',
+			'title'		 => __( 'Personal Details', 'cpt-person' ),
+			'post_types' => array( 'person' ),
+			'context'	 => 'normal',
+			'priority'	 => 'high',
+			'fields'	 => array(
+				$field_details,
+			),
+		);
+
+		return $meta_boxes;
 
 	} // END processor_cmb2()
 

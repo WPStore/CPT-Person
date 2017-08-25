@@ -89,15 +89,18 @@ class CPT {
 		if ( $processor == 'cmb2' ) {
 
 			require_once( $base . '/Person/CMB2.php' );
-			add_action( 'cmb2_admin_init', array( '\WPStore\Plugins\Person\CMB2', 'processor_cmb2' ) );
+			add_action( 'cmb2_admin_init', array( '\WPStore\Plugins\Person\CMB2', 'generate_fields' ) );
 
-		} else if ( $processor == 'acf' ) {
+		} else if ( $processor == 'acf4' ) {
+			
+			require_once( $base . '/Person/ACF4.php' );
+			\WPStore\Plugins\Person\ACF4::generate_fields();
 
-			// https://wordpress.org/plugins/advanced-custom-fields/
-			// require_once( $base . '/Person/ACF.php' );
+		} else if ( $processor == 'meta-box' ) {
 
-//		} else if ( $processor == 'meta-box' ) {
-//			// https://wordpress.org/plugins/meta-box/
+			require_once( $base . '/Person/MetaBox.php' );
+			add_filter( 'rwmb_meta_boxes', array( '\WPStore\Plugins\Person\MetaBox', 'generate_fields' ) );
+
 //		} else if ( $processor == 'pods' ) {
 //			// https://wordpress.org/plugins/pods/
 		} else {
@@ -116,33 +119,41 @@ class CPT {
 				'name' => __( 'Address', 'cpt-person' ),
 				'desc' => __( 'The persons address', 'cpt-person' ),
 				'type'  => array(
-					'cmb2' => 'text',
-					'acf'  => 'text',
+					'cmb2'    => 'textarea_small',
+					'acf'     => 'textarea',
+					'metabox' => 'fieldset_text',
 				),
+				'placeholder' => '',
 			),
 			'telephone'   => array(
 				'name' => __( 'Telephone', 'cpt-person' ),
 				'desc' => __( 'The persons telephone number', 'cpt-person' ),
 				'type'  => array(
-					'cmb2' => 'text',
-					'acf'  => 'text',
+					'cmb2'    => 'text',
+					'acf'     => 'text',
+					'metabox' => 'text',
 				),
+				'placeholder' => '',
 			),
 			'email'       => array(
 				'name' => __( 'Email', 'cpt-person' ),
 				'desc' => __( 'The persons email address', 'cpt-person' ),
 				'type'  => array(
-					'cmb2' => 'text_email',
-					'acf'  => 'text',
+					'cmb2'    => 'text_email',
+					'acf'     => 'email',
+					'metabox' => 'email',
 				),
+				'placeholder' => __( 'yourname@domain.com', 'cpt-person' ),
 			),
 			'website'     => array(
 				'name' => __( 'Website', 'cpt-person' ),
 				'desc' => __( 'The persons website', 'cpt-person' ),
 				'type'  => array(
-					'cmb2' => 'text_url',
-					'acf'  => 'text',
+					'cmb2'    => 'text_url',
+					'acf'     => 'text',
+					'metabox' => 'url',
 				),
+				'placeholder' => __( 'https://www.domain.com', 'cpt-person' ),
 			),
 //			'social'      => array( '_person_social', 'text' ), // repeater
 //			'email'       => array( '_person_email', 'email' ), // repeater
