@@ -34,6 +34,7 @@ Domain Path: /languages
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 namespace WPStore\Plugins;
 
 // Exit if accessed directly
@@ -41,7 +42,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'No direct access! This plugin requires WordPress to be loaded.' );
 }
 
-/*
+/**
+ * Class Person
  * @todo
  */
 final class Person {
@@ -117,11 +119,11 @@ final class Person {
 
 		$base = $this->path . '/';
 
-		require_once( $base . '/Person/Admin.php' );
-		require_once( $base . '/Person/CPT.php' );
-		require_once( $base . '/Person/Editor.php' );
-		require_once( $base . '/Person/Table.php' );
-		require_once( $base . '/Person/Permalinks.php' );
+		require_once( $base . 'Person/Admin.php' );
+		require_once( $base . 'Person/CPT.php' );
+		require_once( $base . 'Person/Editor.php' );
+		require_once( $base . 'Person/Table.php' );
+		require_once( $base . 'Person/Permalinks.php' );
 
 	} // END require_files()
 
@@ -139,6 +141,7 @@ final class Person {
 
 		if ( ! is_admin() ) {
 			// Frontend
+			return;
 		} // END if
 
 		if ( is_admin() && ! is_network_admin() ) {
@@ -153,12 +156,14 @@ final class Person {
 	 * Get the plugin path.
 	 *
 	 * @since  0.1.0
+	 *
 	 * @param  string $folder (optional) appended path.
+	 *
 	 * @return string       Directory and path
 	 */
 	public function get_path( $folder = '' ) {
 
-		$path = (string)apply_filters( "cpt-person/path", untrailingslashit( plugin_dir_path( __FILE__ ) ) );
+		$path = (string) apply_filters( "cpt-person/path", untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 		return $path . $folder;
 
@@ -168,7 +173,9 @@ final class Person {
 	 * Get the plugin url.
 	 *
 	 * @since  0.1.0
+	 *
 	 * @param  string $path (optional) appended path.
+	 *
 	 * @return string URL and path
 	 */
 	public function get_url( $path = '' ) {
@@ -233,7 +240,8 @@ final class Person {
 	} // END activation()
 
 	/**
-	 * 
+	 * @todo
+	 *
 	 * @param bool $network_wide
 	 */
 	public static function deactivation( $network_wide ) {
@@ -263,5 +271,5 @@ function wpstore_cpt_person() {
 add_action( 'plugins_loaded', array( wpstore_cpt_person(), 'init' ) );
 
 /** (De-)Activation */
-register_activation_hook(   __FILE__, array( wpstore_cpt_person(), 'activation' ) );
+register_activation_hook( __FILE__, array( wpstore_cpt_person(), 'activation' ) );
 register_deactivation_hook( __FILE__, array( wpstore_cpt_person(), 'deactivation' ) );

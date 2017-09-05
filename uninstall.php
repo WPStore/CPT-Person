@@ -18,5 +18,6 @@ if ( ! is_multisite() ) { // Single Site Install
 	delete_option( 'cpt_person_base' );
 
 } else { // Multisite Installation
+	return;
 	// @todo EVAL multisite uninstall
 }
