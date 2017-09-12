@@ -104,7 +104,7 @@ final class Person {
 		$this->basename = $this->get_basename();
 		$this->path     = $this->get_path();
 
-		$this->require_files();
+		$this->autoloader();
 
 	} // END __construct()
 
@@ -115,15 +115,22 @@ final class Person {
 	 * @since 0.0.1
 	 * @return void
 	 */
-	private function require_files() {
+	private function autoloader() {
 
 		$base = $this->path . '/';
 
-		require_once( $base . 'Person/Admin.php' );
-		require_once( $base . 'Person/CPT.php' );
-		require_once( $base . 'Person/Editor.php' );
-		require_once( $base . 'Person/Table.php' );
-		require_once( $base . 'Person/Permalinks.php' );
+		if ( !class_exists('\\WPUtils\\Autoloader') ) {
+			require_once( $base . 'utils/autoloader.php' );
+		}
+
+		// instantiate the loader
+		$loader = new \WPUtils\Autoloader;
+
+		// register the autoloader
+		$loader->register();
+
+		// register the base directories for the namespace prefix
+		$loader->addNamespace('WPStore\Person', $base . '/Person');
 
 	} // END require_files()
 
