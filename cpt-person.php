@@ -15,6 +15,7 @@ Author:      WPStore.io
 Author URI:  https://www.wpstore.io
 Donate link: https://www.wpstore.io/donate
 License:     GPLv2
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: cpt-person
 Domain Path: /languages
 
